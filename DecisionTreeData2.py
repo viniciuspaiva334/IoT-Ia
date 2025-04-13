@@ -4,18 +4,21 @@ from sklearn import metrics
 
 import pandas as pd 
 
-url = "https://raw.githubusercontent.com/viniciuspaiva334/IoT-Ia/refs/heads/main/iris/iris.data"
-dataSet = pd.read_csv(url, header=None, on_bad_lines='skip')
+url = "https://raw.githubusercontent.com/viniciuspaiva334/IoT-Ia/refs/heads/main/wine%2Bquality/winequality-white.csv"
+dataSet = pd.read_csv(url, sep=";",header=0, on_bad_lines='skip')
 
 
 print(dataSet.shape)   
+  
+print(dataSet.head())
  
+print(dataSet.info())
  
+print(dataSet.describe())
 
 columns = len(dataSet.columns)
-
-Y = dataSet[4] 
-X = dataSet.loc[:,0:columns-2]
+Y = dataSet['quality']
+X = dataSet.drop(columns=['quality'])
 
 print(Y.head())              
 print(Y.value_counts())     
